@@ -1,0 +1,33 @@
+{
+    "schemaVersion": 1,
+    "id": "tmmouse",
+    "version": "${version}",
+    "name": "TMMouse",
+    "description": "Tape + Mouse = TapeMouse; Tape + My + Mouse = Tape My Mouse (TMMouse);",
+    "authors": [
+        "Dries007",
+        "VidTu"
+    ],
+    "contact": {
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/tmmouse",
+        "sources": "https://github.com/VidTuGit/TapeMouse",
+        "issues": "https://github.com/VidTuGit/TapeMouse/issues"
+    },
+    "license": "New/Modified BSD (3-clause)",
+    "icon": "logo.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "net.dries007.tapemouse.TapeMouse"
+        ]
+    },
+    "accessWidener": "tapemouse.accesswidener",
+    "mixins": [
+        "tapemouse.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.7.4",
+        "fabric": "*",
+        "minecraft": "1.17.x"
+    }
+}
