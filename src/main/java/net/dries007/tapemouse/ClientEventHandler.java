@@ -47,7 +47,7 @@ public class ClientEventHandler {
 					keyBinding = null;
 					return 1;
 				})).then(ClientCommandManager.literal("list").executes(c -> {
-					List<String> keys = KeyBinding.KEYS_BY_ID.keySet().stream().map(k -> k.replaceFirst("^key\\.", ""))
+					List<String> keys = KeyBinding.keysById.keySet().stream().map(k -> k.replaceFirst("^key\\.", ""))
 							.sorted().collect(Collectors.toList());
 					c.getSource().sendFeedback(new LiteralText(String.join(", ", keys)));
 					return keys.size();
