@@ -3,6 +3,8 @@
     "package": "ru.vidtu.tapemouse.mixins",
     "minVersion": 0.8,
     "client": [
-        "DebugHudMixin"
+        "ClientPlayerEntityMixin",
+        "DebugHudMixin",
+        "ClientPlayNetworkHandlerMixin"
     ]
 }

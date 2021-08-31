@@ -12,16 +12,16 @@ import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.command.CommandSource;
+import net.minecraft.client.options.KeyBinding;
+import net.minecraft.server.command.CommandSource;
 
 public class KeybindArgumentType implements ArgumentType<KeyBinding> {
 	public static final KeybindArgumentType INSTANCE = new KeybindArgumentType();
 	@Override
 	public KeyBinding parse(StringReader reader) throws CommandSyntaxException {
 		String key = reader.readString();
-		KeyBinding keyBinding = KeyBinding.KEYS_BY_ID.get("key." + key);
-		if (keyBinding == null) keyBinding = KeyBinding.KEYS_BY_ID.get(key);
+		KeyBinding keyBinding = KeyBinding.keysById.get("key." + key);
+		if (keyBinding == null) keyBinding = KeyBinding.keysById.get(key);
 		if (keyBinding == null) throw new CommandSyntaxException(new SimpleCommandExceptionType(
 				new LiteralMessage("No keybinding")), new LiteralMessage("No keybinding found"));
 		return keyBinding;
@@ -29,12 +29,12 @@ public class KeybindArgumentType implements ArgumentType<KeyBinding> {
 	
 	@Override
 	public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
-		return CommandSource.suggestMatching(KeyBinding.KEYS_BY_ID.keySet().stream().map(s -> s.replaceFirst("^key\\.", "")).sorted(), builder);
+		return CommandSource.suggestMatching(KeyBinding.keysById.keySet().stream().map(s -> s.replaceFirst("^key\\.", "")).sorted(), builder);
 	}
 	
 	@Override
 	public Collection<String> getExamples() {
-		return KeyBinding.KEYS_BY_ID.keySet();
+		return KeyBinding.keysById.keySet();
 	}
 
 }
